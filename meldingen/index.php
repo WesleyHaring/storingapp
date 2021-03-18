@@ -26,12 +26,36 @@
         $statement->execute();
         $meldingen = $statement->fetchAll(PDO::FETCH_ASSOC);
         
-
-        foreach($meldingen as $melding)
+        if ($melding['prioriteit'] == 1)
         {
-            echo "<p>" . $melding['attractie'] . $melding['type'] . $melding['capaciteit'] . $melding['melder'] . $melding['gemeld_op'] . $melding['overige_info'] . "</p>";
+            $melding['prioriteit'] = "Ja";   
         }
+        else
+        {
+            $melding['prioriteit'] = "Nee";
+        } 
         ?>
+
+        <table>
+            <tr>
+                <th>Naam attractie</th>
+                <th>Type</th>
+                <th>Capaciteit/uur</th>
+                <th>Naam melder</th>
+                <th>Overige informatie</th>
+                <th>Prioriteit</th>
+            </tr>
+            <?php foreach($meldingen as $melding): ?>
+                <tr>
+                    <td><?php echo $melding['attractie']; ?> </td>
+                    <td><?php echo $melding['type']; ?> </td>
+                    <td><?php echo $melding['capaciteit']; ?> </td>
+                    <td><?php echo $melding['melder']; ?> </td>
+                    <td><?php echo $melding['overige_info']; ?> </td>
+                    <td><?php echo $melding['prioriteit']; ?> </td>
+                </tr>
+            <?php endforeach; ?>
+        </table>
     </div>  
 
 </body>
