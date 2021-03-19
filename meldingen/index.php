@@ -26,7 +26,7 @@
         $statement->execute();
         $meldingen = $statement->fetchAll(PDO::FETCH_ASSOC);
         
-        if ($melding['prioriteit'] == 1)
+        if ($prioriteit == 1)
         {
             $melding['prioriteit'] = "Ja";   
         }
@@ -43,6 +43,7 @@
                 <th>Capaciteit/uur</th>
                 <th>Naam melder</th>
                 <th>Overige informatie</th>
+                <th>Gemeld op</th>
                 <th>Prioriteit</th>
             </tr>
             <?php foreach($meldingen as $melding): ?>
@@ -52,6 +53,7 @@
                     <td><?php echo $melding['capaciteit']; ?> </td>
                     <td><?php echo $melding['melder']; ?> </td>
                     <td><?php echo $melding['overige_info']; ?> </td>
+                    <td><?php echo $melding['gemeld_op']; ?> </td>
                     <td><?php echo $melding['prioriteit']; ?> </td>
                 </tr>
             <?php endforeach; ?>
