@@ -41,7 +41,7 @@
                     <td><?php echo $melding['type']; ?> </td>
                     <td><?php echo $melding['capaciteit']; ?> </td>                    
                     <td><?php echo $melding['overige_info']; ?></td>
-                    <td><a href="edit.php">aanpassen</a></td>
+                    <td><a href="edit.php?id=<?php echo $melding['id']; ?>">aanpassen</a></td>
                 </tr>
             <?php endforeach; ?>
         </table>
