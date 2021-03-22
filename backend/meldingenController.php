@@ -1,5 +1,4 @@
 <?php
-
 //Variabelen vullen
 $attractie = $_POST['attractie'];
 if(empty($attractie))
@@ -25,19 +24,13 @@ if(empty($type))
     $errors[]="Vul de type-soort in.";
 }
 
-if(isset($_post['prioriteit']))
+if(isset($_POST['prioriteit']))
 {
     $prioriteit = true;
 }
 else
 {
     $prioriteit = false;
-}
-
-$gemeld_op = $_POST['gemeld_op'];
-if(empty($gemeld_op))
-{
-    $errors[]="Vul de niks in.";
 }
 
 if(isset($errors))
@@ -51,7 +44,7 @@ $overige_info = $_POST['overige_info'];
 require_once 'conn.php';
 
 //2. Query
-$query = "INSERT INTO meldingen(attractie, capaciteit, melder, type, prioriteit, overige_info, gemeld_op) VALUES (:attractie, :capaciteit, :melder, :type, :prioriteit, :overige_info, :gemeld_op)";
+$query = "INSERT INTO meldingen(attractie, capaciteit, melder, type, prioriteit, overige_info) VALUES (:attractie, :capaciteit, :melder, :type, :prioriteit, :overige_info)";
 
 //3. Prepare
 $statement = $conn->prepare($query);
@@ -64,7 +57,6 @@ $statement->execute([
     ":type" => $type,
     ":prioriteit" => $prioriteit,
     ":overige_info" => $overige_info,
-    ":gemeld_op" => $gemeld_op,
 ]);
 
 header("Location: ../meldingen/index.php?msg=Melding opgeslagen");

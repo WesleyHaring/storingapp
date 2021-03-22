@@ -25,15 +25,6 @@
         $statement = $conn->prepare($query);
         $statement->execute();
         $meldingen = $statement->fetchAll(PDO::FETCH_ASSOC);
-        
-        if ($prioriteit == 1)
-        {
-            $melding['prioriteit'] = "Ja";   
-        }
-        else
-        {
-            $melding['prioriteit'] = "Nee";
-        } 
         ?>
 
         <table>
@@ -54,7 +45,21 @@
                     <td><?php echo $melding['melder']; ?> </td>
                     <td><?php echo $melding['overige_info']; ?> </td>
                     <td><?php echo $melding['gemeld_op']; ?> </td>
-                    <td><?php echo $melding['prioriteit']; ?> </td>
+                    <td>
+                        <?php 
+                            if ($melding['prioriteit'] == 1)
+                                {
+                                    $melding['prioriteit'] = "Ja";  
+                                    echo $melding['prioriteit']; 
+                                }
+                            else
+                                {
+                                    $melding['prioriteit'] = "Nee";
+                                    echo $melding['prioriteit'];
+                                    
+                                } 
+                        ?> 
+                    </td>
                 </tr>
             <?php endforeach; ?>
         </table>
